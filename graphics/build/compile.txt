@@ -1,0 +1,330 @@
+tmp/barycentric.o : ../src/barycentric.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/binomial.o : ../src/binomial.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/bit_count.o : ../src/bit_count.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/camera.o : ../src/camera.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/CameraInterface.o : ../src/CameraInterface.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/camera_map.o : ../src/camera_map.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/change_type.o : ../src/change_type.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/cluster.o : ../src/cluster.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/color.o : ../src/color.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/color_buffer.o : ../src/color_buffer.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/color_buffer64.o : ../src/color_buffer64.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/ComputeShader.o : ../src/ComputeShader.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/crop_ms.o : ../src/crop_ms.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/Delaunay.o : ../src/Delaunay.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/depth_texture_buffer.o : ../src/depth_texture_buffer.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/depth_texture_buffer_ms.o : ../src/depth_texture_buffer_ms.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/displacement_map.o : ../src/displacement_map.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/epsilon.o : ../src/epsilon.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/EulerAngles.o : ../src/EulerAngles.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/event.o : ../src/event.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/fmatrix.o : ../src/fmatrix.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/frame.o : ../src/frame.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/FrustumCulling.o : ../src/FrustumCulling.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gauss_dist_im.o : ../src/gauss_dist_im.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/geom.o : ../src/geom.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gHash.o : ../src/gHash.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gl.o : ../src/gl.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/glInfo.o : ../src/glInfo.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/glMultiGpu.o : ../src/glMultiGpu.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gl_draw.o : ../src/gl_draw.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gl_extension.o : ../src/gl_extension.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gl_stat.o : ../src/gl_stat.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/gmatrix.o : ../src/gmatrix.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/heap.o : ../src/heap.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/homography.o : ../src/homography.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/image_sample.o : ../src/image_sample.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/intersection.o : ../src/intersection.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/interval.o : ../src/interval.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/ivec.o : ../src/ivec.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/keystate.o : ../src/keystate.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/log.o : ../src/log.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/lu_decomp.o : ../src/lu_decomp.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/Material_Shader.o : ../src/Material_Shader.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/matrix.o : ../src/matrix.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/matrix3x3.o : ../src/matrix3x3.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/matrix3x4.o : ../src/matrix3x4.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/matrix4x4.o : ../src/matrix4x4.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/matrix_math.o : ../src/matrix_math.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/minmax.o : ../src/minmax.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/misc.o : ../src/misc.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/mst.o : ../src/mst.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/noise_api.o : ../src/noise_api.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/offscreen.o : ../src/offscreen.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/ogl_image_load.o : ../src/ogl_image_load.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/parametrize.o : ../src/parametrize.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/PixelBufferObj.o : ../src/PixelBufferObj.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/ply_reader.o : ../src/ply_reader.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/pqueue.o : ../src/pqueue.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/projector.o : ../src/projector.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/QR.o : ../src/QR.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/quater.o : ../src/quater.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/quater_param.o : ../src/quater_param.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/rasterizer.o : ../src/rasterizer.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/real.o : ../src/real.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_alpha.o : ../src/render_alpha.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_alpha_bar.o : ../src/render_alpha_bar.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_bezier.o : ../src/render_bezier.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_bezier_join.o : ../src/render_bezier_join.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_bezier_path.o : ../src/render_bezier_path.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_buffer.o : ../src/render_buffer.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_homography.o : ../src/render_homography.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_hsv.o : ../src/render_hsv.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_hsv_bar.o : ../src/render_hsv_bar.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_legend.o : ../src/render_legend.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_legend_bw.o : ../src/render_legend_bw.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_line.o : ../src/render_line.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_normal.o : ../src/render_normal.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_normal_color.o : ../src/render_normal_color.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_path.o : ../src/render_path.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_scalar.o : ../src/render_scalar.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/render_scalar_bw.o : ../src/render_scalar_bw.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/scaled_frame.o : ../src/scaled_frame.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/seed_fill.o : ../src/seed_fill.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/Shader.o : ../src/Shader.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/shadow_map.o : ../src/shadow_map.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/simple_b_rep.o : ../src/simple_b_rep.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/simple_curve.o : ../src/simple_curve.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/SLIC.o : ../src/SLIC.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/slic_hierarchy.o : ../src/slic_hierarchy.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/solve.o : ../src/solve.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/square.o : ../src/square.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/StreamTexture.o : ../src/StreamTexture.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/StreamTextureRGB.o : ../src/StreamTextureRGB.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/string_manip.o : ../src/string_manip.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/sys.o : ../src/sys.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/TextTexture.o : ../src/TextTexture.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/texture_buffer.o : ../src/texture_buffer.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/texture_buffer_ms.o : ../src/texture_buffer_ms.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/Timer.o : ../src/Timer.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/Triangle.o : ../src/Triangle.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/unsigned.o : ../src/unsigned.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/vec.o : ../src/vec.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/vector.o : ../src/vector.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/vec_abs.o : ../src/vec_abs.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/fvec.o : ../src/fvec.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/virtual_model.o : ../src/virtual_model.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/vision_camera.o : ../src/vision_camera.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/xform.o : ../src/xform.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/YUVtoRGB_Shader.o : ../src/YUVtoRGB_Shader.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
+tmp/_limits.o : ../src/_limits.cpp
+	$(CC) -std=c++11 $(DEFINES) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+
