@@ -157,8 +157,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CsvToJson.cpp" />
     <ClCompile Include="DistortionFunction.cpp" />
     <ClCompile Include="keypoint_gen.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CsvToJson.h" />
+    <ClInclude Include="DistortionFunction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

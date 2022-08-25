@@ -2607,6 +2607,7 @@ public:
             using std::swap;
             swap(a.doc, b.doc);
             // ...
+            // ...
         }
         \endcode
         \see Swap()

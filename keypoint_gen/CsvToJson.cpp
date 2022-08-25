@@ -150,15 +150,83 @@ bool csvToJson(
 
 CsvToJson::CsvToJson()
 {
-    m_pdoc = new Document(kObjectType);
+    m_pdoc = NULL;
+    create();
 }
 
 CsvToJson::~CsvToJson()
 {
-    delete m_pdoc;
+    distory();
+}
+
+void CsvToJson::create(void)
+{
+    if (m_pdoc != NULL)
+        distory();
+
+    m_pdoc = new Document(kObjectType);
+    m_allocator = m_pdoc->GetAllocator();
+}
+
+void CsvToJson::distory(void)
+{
+    if(m_pdoc!=NULL){
+        delete m_pdoc;
+        m_pdoc = NULL;
+    }
+}
+
+std::string CsvToJson::JsonDocToString(const Document& doc, bool isPretty = false)
+{
+    StringBuffer buffer;
+    if (isPretty)
+    {
+        PrettyWriter<StringBuffer> writer(buffer);
+        doc.Accept(writer);
+    }
+    else
+    {
+        Writer<StringBuffer> writer(buffer);
+        doc.Accept(writer);
+    }
+    return buffer.GetString();
 }
 
 void CsvToJson::AddPose()
 {
+    //write json
+    rapidjson::Document document;
+    document.SetObject();
+    rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
 
+    rapidjson::Value array(rapidjson::kArrayType);
+
+    for (int i = 0; i < 10; i++)
+    {
+        rapidjson::Value object(rapidjson::kObjectType);
+        object.AddMember("id", 1, allocator);
+        object.AddMember("name", "test", allocator);
+        object.AddMember("version", 1.01, allocator);
+        object.AddMember("vip", true, allocator);
+
+        object.SetInt(i);
+        array.PushBack(object, allocator);
+    }
+
+    document.AddMember("title", "PLAYER INFO", allocator);
+    document.AddMember("players", array, allocator);
+
+    rapidjson::StringBuffer buffer;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+    document.Accept(writer);
+    auto out = buffer.GetString();
+
+
+    Document::AllocatorType& allocator = m_pdoc->GetAllocator();
+    m_pdoc->AddMember("project", "rapidjson", allocator);
+    m_pdoc->AddMember("stars", 10, allocator);
+
+
+    std::string jsonString = JsonDocToString(*m_pdoc, true);
+    printf(jsonString.c_str());
 }
