@@ -34,6 +34,7 @@ protected:
 
 public:
 	void AddPose();
+	void AddAnnotation(const std::string lable);
 
 };
 

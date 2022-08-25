@@ -72,7 +72,7 @@ std::string& rename_label_30(const std::string& label)
     if (label.compare("RightFootEE") == 0)
         label_kor.append("오른쪽 발 끝");
     else if (label.compare("RightToeBase") == 0)
-        label_kor.append("오른쪽 발가락 시작점")
+        label_kor.append("오른쪽 발가락 시작점");
     else if (label.compare("RightFoot") == 0)
         label_kor.append("오른쪽 발목");
     else if (label.compare("RightLeg") == 0)
@@ -151,6 +151,7 @@ bool csvToJson(
 CsvToJson::CsvToJson()
 {
     m_pdoc = NULL;
+    m_paryAnnotation = NULL;
     create();
 }
 
@@ -166,6 +167,9 @@ void CsvToJson::create(void)
 
     m_pdoc = new Document(kObjectType);
     m_allocator = m_pdoc->GetAllocator();
+
+    m_paryAnnotation = new Value(kArrayType);
+
 }
 
 void CsvToJson::distory(void)
@@ -174,6 +178,12 @@ void CsvToJson::distory(void)
         delete m_pdoc;
         m_pdoc = NULL;
     }
+
+    if (m_paryAnnotation != NULL) {
+        delete m_paryAnnotation;
+        m_paryAnnotation = NULL;
+    }
+    
 }
 
 std::string CsvToJson::JsonDocToString(const Document& doc, bool isPretty = false)
@@ -192,8 +202,37 @@ std::string CsvToJson::JsonDocToString(const Document& doc, bool isPretty = fals
     return buffer.GetString();
 }
 
+void CsvToJson::AddAnnotation(const std::string lable)
+{
+    Value pose(kObjectType);
+    {
+        Value location(kObjectType);
+        {
+            //for 30 or 22
+            Value object(kObjectType);
+            {
+                int x = 0;
+                int y = 0;
+                object.AddMember("x", x, m_allocator);
+                object.AddMember("y", y, m_allocator);
+                object.AddMember("view", 10, m_allocator);
+            }
+            location.AddMember("오른쪽 발 끝", object, m_allocator);
+
+        }
+
+        pose.AddMember("location", location, m_allocator);
+        pose.AddMember("label", lable, m_allocator);
+        pose.AddMember("pose", "pose", m_allocator);
+    }
+    m_paryAnnotation->AddMember("pose", pose, m_allocator);
+    m_paryAnnotation->AddMember("annotation", *m_paryAnnotation, m_allocator);
+}
+
 void CsvToJson::AddPose()
 {
+
+
     //write json
     rapidjson::Document document;
     document.SetObject();
