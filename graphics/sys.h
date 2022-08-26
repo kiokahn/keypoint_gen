@@ -36,7 +36,7 @@ void file_log(const char *fmt, ...);
 #include  "GL/glew.h"
 #include  <GL/gl.h>
 #include  <GL/glu.h>
-#include  <GL/glext.h>
+#include  "GL/glext.h"
 
 
 #elif defined(LINUX)

@@ -9,6 +9,24 @@
 #include <DistortionFunction.h>
 #include <graphics/sys.h>
 
+
+/*2022-08-26*/
+//added by kiokahn
+#include <string>
+#include <vector>
+
+#define RAPIDJSON_HAS_STDSTRING 1
+
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+#include "rapidjson/prettywriter.h" 
+
+using namespace rapidjson;
+
+#include "MakeKeypointJson.h"
+/**/
+
 #define max_cam_cnt 16
 
 user::DistortionFunction* distortion_function[max_cam_cnt];
@@ -267,10 +285,12 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 			std::string t_ = std::to_string(t_table+1);
 			std::string odir_8  = graphics::to_utf8(odir);
 			make_directory(odir_8.c_str());
-			std::wstring cam_file_name = odir + L"/";
+			std::wstring cam_file_name = odir + L"/";//output csv file name
+			std::wstring cam_file_name_json = odir + L"/";//output json file name  //added by kiokahn
 			cam_file_name = cam_file_name + header + L"_T" + graphics::to_utf16(t_) +L"_"+ graphics::to_utf16(num_des_s)  + L".csv";
+			cam_file_name_json = cam_file_name_json + header + L"_T" + graphics::to_utf16(t_) + L"_" + graphics::to_utf16(num_des_s) + L".json";//added by kiokahn
 
-			
+			//read csv files from captury export
 			std::string header_from_csv;
 			bool read_header = false;
 			int person_cnt = 0;
@@ -291,6 +311,9 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 				}
 			}
 			if (out_string.empty()) continue;
+
+			/*
+			//write csv format for frame images
 			FILE* fp = _wfopen(cam_file_name.c_str(), L"wt");
 			std::string header_tmp = graphics::to_utf8(header);
 			fprintf(fp, "%s\n", header_tmp.c_str());
@@ -300,9 +323,9 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 			for (int j = 0; j < out_string.size(); j++) {
 				std::vector<std::string> tokens;
 				graphics::get_tokens(out_string[j], tokens," ;,\n");
-				int point_count = (tokens.size() - 2) / 2 /2 /*reduce key*/;
-				fprintf(fp, "%s,", tokens[0].c_str());
-				fprintf(fp, "%s", tokens[1].c_str());
+				int point_count = (tokens.size() - 2) / 2 /2 ;//reduce key//;
+				fprintf(fp, "%s,", tokens[0].c_str()); // Frames, # of frame
+				fprintf(fp, "%s", tokens[1].c_str()); // PersonName, model id, person
 				for (int k = 0; k < point_count; k++) {
 					float v1, v2;
 					sscanf(tokens[2 + k * 2 + 0].c_str(), "%f", &v1);
@@ -314,6 +337,49 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 				//fprintf(fp, "%s", out_string[j].c_str());
 			}
 			fclose(fp);
+			*/
+			
+
+			//write json format for frame images
+			MakeKeypointJson make_json;
+
+			ElementAnnotation ele_annotation;
+			FILE* fp_json = _wfopen(cam_file_name_json.c_str(), L"wt");
+			std::vector<std::string> keypoint_names;
+			std::string json_header_tmp = form_header(header_from_csv);
+			graphics::get_tokens(json_header_tmp, keypoint_names, ",\n");
+			ele_annotation.time_unit_name = keypoint_names[0];
+			keypoint_names.erase(keypoint_names.begin());// remove "Frames"
+			keypoint_names.erase(keypoint_names.begin());// remove "PersonName"
+			ele_annotation.keypoint_names = keypoint_names;// copy keypoints names
+
+			for (int j = 0; j < out_string.size(); j++) {
+				std::vector<std::string> tokens;
+				graphics::get_tokens(out_string[j], tokens, " ;,\n");
+				int point_count = (tokens.size() - 2) / 2 / 2;//reduce key//;
+				//fprintf(fp_json, "%s,", tokens[0].c_str());
+				ele_annotation.time_stamp = float(std::stod(tokens[0].c_str()));
+				//fprintf(fp_json, "%s", tokens[1].c_str());
+				ele_annotation.lable = tokens[1];
+
+				for (int k = 0; k < point_count; k++) {
+					float v1, v2;
+					sscanf(tokens[2 + k * 2 + 0].c_str(), "%f", &v1);
+					sscanf(tokens[2 + k * 2 + 1].c_str(), "%f", &v2);
+					graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2) * double(width_));
+
+					ele_annotation.keypoints.push_back(out);
+					//fprintf(fp, ",%0.2f,%0.2f", out[0], out[1]);
+				}
+				//fprintf(fp, "\n");
+				make_json.AddPose(&ele_annotation);
+				ele_annotation.keypoints.clear();
+			}
+
+			make_json.AddAnnotation();
+			make_json.FileWrite(fp_json);
+			//fprintf(fp_json, "%s", json_str.c_str());
+			fclose(fp_json);
 		}
 	}
 

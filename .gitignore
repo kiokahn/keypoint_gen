@@ -28,6 +28,10 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 #[Bb]in/
+[Bb]inD/
+[Bb]in/opencv_world440.dll
+[Bb]in/output/*
+[Bb]in/backup/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/

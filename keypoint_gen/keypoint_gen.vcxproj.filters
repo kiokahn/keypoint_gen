@@ -21,12 +21,12 @@
     <ClCompile Include="DistortionFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CsvToJson.cpp">
+    <ClCompile Include="MakeKeypointJson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CsvToJson.h">
+    <ClInclude Include="MakeKeypointJson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DistortionFunction.h">
