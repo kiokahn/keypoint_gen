@@ -6,7 +6,7 @@ CsvToJson.py : 박원형(미소정보기술, http://www.misoinfo.co.kr/)
 
 Tested :  MS WIndows 10 Pro, Windows SDK 10.0.xxxx, Microsoft Visual Studio Community 2022 (64-bit) 
 
-## Useage
+## Usage
 ```
 keypoint_gen.exe times.txt 2DKeypoints(CSV) output
 ```
