@@ -263,6 +263,7 @@ std::string form_header(std::string s)
 	return out;
 }
 
+//for 30 keypoints
 bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring odir, std::vector<std::wstring> persons, std::vector<float> time_table)
 {
 
@@ -288,7 +289,7 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 			std::wstring cam_file_name = odir + L"/";//output csv file name
 			std::wstring cam_file_name_json = odir + L"/";//output json file name  //added by kiokahn
 			cam_file_name = cam_file_name + header + L"_T" + graphics::to_utf16(t_) +L"_"+ graphics::to_utf16(num_des_s)  + L".csv";
-			cam_file_name_json = cam_file_name_json + header + L"_T" + graphics::to_utf16(t_) + L"_" + graphics::to_utf16(num_des_s) + L".json";//added by kiokahn
+			cam_file_name_json = cam_file_name_json + header + L"_" + graphics::to_utf16(num_des_s) + L"_frame" + graphics::to_utf16(t_) + L".json";//added by kiokahn
 
 			//read csv files from captury export
 			std::string header_from_csv;
@@ -342,7 +343,7 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 
 			//write json format for frame images
 			//added by kiokahn
-			MakeKeypointJson make_json;
+			MakeKeypointJson30 make_json;
 
 			ElementAnnotation ele_annotation;
 			FILE* fp_json = _wfopen(cam_file_name_json.c_str(), L"wt");
@@ -386,14 +387,141 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 
 	return true;
 }
+
+//for 30 keypoints
+bool read_data_and_write22(std::wstring header, std::wstring idir, std::wstring odir, std::vector<std::wstring> persons, std::vector<float> time_table)
+{
+
+	std::vector<std::vector<std::wstring>> files(persons.size());
+	std::vector<std::string> dirs;
+	for (int i = 0; i < persons.size(); i++) {
+		std::wstring sample_dir = idir + L"/" + persons[i];
+		std::string  sample_dir8 = graphics::to_utf8(sample_dir);
+		dirs.push_back(sample_dir8);
+		read_files(sample_dir8.c_str(), files[i]);
+	}
+	char buffer[10000];
+	for (int i = 0; i < max_cam_cnt; i++)
+	{
+		char num_design[5];
+		sprintf(num_design, "%02d", i + 1);
+		std::string num_des_s(num_design);
+
+		for (int t_table = 0; t_table < time_table.size(); t_table++) {
+			std::string t_ = std::to_string(t_table + 1);
+			std::string odir_8 = graphics::to_utf8(odir);
+			make_directory(odir_8.c_str());
+			std::wstring cam_file_name = odir + L"/";//output csv file name
+			std::wstring cam_file_name_json = odir + L"/";//output json file name  //added by kiokahn
+			cam_file_name = cam_file_name + header + L"_T" + graphics::to_utf16(t_) + L"_" + graphics::to_utf16(num_des_s) + L".csv";
+			cam_file_name_json = cam_file_name_json + header + L"_" + graphics::to_utf16(num_des_s) + L"_frame" + graphics::to_utf16(t_) + L".json";//added by kiokahn
+
+			//read csv files from captury export
+			std::string header_from_csv;
+			bool read_header = false;
+			int person_cnt = 0;
+			std::vector<std::string> out_string;
+			for (int j = 0; j < persons.size(); j++) {
+				std::wstring file_a = camera_file(i, files[j]);
+				if (!file_a.empty()) {
+					std::wstring input_file_name = idir + L"/" + persons[j] + L"/" + file_a;
+					FILE* in_fp = _wfopen(input_file_name.c_str(), L"rt");
+					fgets(buffer, 10000, in_fp);
+					if (!read_header) {
+						header_from_csv = std::string(buffer);
+						read_header = true;
+					}
+					std::string out_s = form_string_from_time(time_table[t_table], in_fp, persons[j]);
+					if (!out_s.empty())out_string.push_back(out_s);
+					fclose(in_fp);
+				}
+			}
+			if (out_string.empty()) continue;
+
+			/*
+			//write csv format for frame images
+			FILE* fp = _wfopen(cam_file_name.c_str(), L"wt");
+			std::string header_tmp = graphics::to_utf8(header);
+			fprintf(fp, "%s\n", header_tmp.c_str());
+			fprintf(fp, "%d\n", out_string.size());
+			header_tmp = form_header(header_from_csv);
+			fprintf(fp, "%s\n", header_tmp.c_str());
+			for (int j = 0; j < out_string.size(); j++) {
+				std::vector<std::string> tokens;
+				graphics::get_tokens(out_string[j], tokens," ;,\n");
+				int point_count = (tokens.size() - 2) / 2 /2 ;//reduce key//;
+				fprintf(fp, "%s,", tokens[0].c_str()); // Frames, # of frame
+				fprintf(fp, "%s", tokens[1].c_str()); // PersonName, model id, person
+				for (int k = 0; k < point_count; k++) {
+					float v1, v2;
+					sscanf(tokens[2 + k * 2 + 0].c_str(), "%f", &v1);
+					sscanf(tokens[2 + k * 2 + 1].c_str(), "%f", &v2);
+					graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2)*double(width_));
+					fprintf(fp, ",%0.2f,%0.2f", out[0], out[1]);
+				}
+				fprintf(fp, "\n");
+				//fprintf(fp, "%s", out_string[j].c_str());
+			}
+			fclose(fp);
+			*/
+
+
+			//write json format for frame images
+			//added by kiokahn
+			MakeKeypointJson22 make_json;
+
+			ElementAnnotation ele_annotation;
+			FILE* fp_json = _wfopen(cam_file_name_json.c_str(), L"wt");
+			std::vector<std::string> keypoint_names;
+			std::string json_header_tmp = form_header(header_from_csv);
+			graphics::get_tokens(json_header_tmp, keypoint_names, ",\n");
+			ele_annotation.time_unit_name = keypoint_names[0];
+			keypoint_names.erase(keypoint_names.begin());// remove "Frames"
+			keypoint_names.erase(keypoint_names.begin());// remove "PersonName"
+			ele_annotation.keypoint_names = keypoint_names;// copy keypoints names
+
+			for (int j = 0; j < out_string.size(); j++) {
+				std::vector<std::string> tokens;
+				graphics::get_tokens(out_string[j], tokens, " ;,\n");
+				int point_count = (tokens.size() - 2) / 2 / 2;//reduce key//;
+				//fprintf(fp_json, "%s,", tokens[0].c_str());
+				ele_annotation.time_stamp = float(std::stod(tokens[0].c_str()));
+				//fprintf(fp_json, "%s", tokens[1].c_str());
+				ele_annotation.lable = tokens[1];
+
+				for (int k = 0; k < point_count; k++) {
+					float v1, v2;
+					sscanf(tokens[2 + k * 2 + 0].c_str(), "%f", &v1);
+					sscanf(tokens[2 + k * 2 + 1].c_str(), "%f", &v2);
+					graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2) * double(width_));
+
+					ele_annotation.keypoints.push_back(out);
+					//fprintf(fp, ",%0.2f,%0.2f", out[0], out[1]);
+				}
+				//fprintf(fp, "\n");
+				make_json.AddPose(&ele_annotation);
+				ele_annotation.keypoints.clear();
+			}
+
+			make_json.AddAnnotation();
+			make_json.FileWrite(fp_json);
+			//fprintf(fp_json, "%s", json_str.c_str());
+			fclose(fp_json);
+		}
+	}
+
+	return true;
+}
+
 int main(int argc, char* args[])
 {
 	if (argc < 2) {
-		printf("usage: keypoint_gen.exe heart_times.txt 2DKeypoints(CSV) output\n");
+		printf("usage: keypoint_gen.exe heart_times.txt 2DKeypoints(CSV) output -key22\n");
 		printf("heart_times.txt contains time info to extract\n");
 		printf("2DKeypoints(CSV) is a directory which contains the input csv files,\n");
 		printf("note that you need separate the each person into each sub directory,\n");
 		printf("output is the output directory\n");
+		printf("-key22 is optional for 22 keypoints, default is 30 keypoints\n");
 		return 0;
 	}
 
@@ -422,8 +550,17 @@ int main(int argc, char* args[])
 	if (argc < 4) {
 		return 0;
 	}
+
 	std::wstring out_dir = graphics::to_utf16(std::string(args[3]));
-	read_data_and_write(header, input_dir, out_dir, input_persons, time_table);
+
+	bool _22Keypoints = false;
+	if (argc >= 5 && std::string(args[4]).compare("-key22") == 0)
+		_22Keypoints = true;
+
+	if(_22Keypoints)
+		read_data_and_write22(header, input_dir, out_dir, input_persons, time_table);
+	else
+		read_data_and_write(header, input_dir, out_dir, input_persons, time_table);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

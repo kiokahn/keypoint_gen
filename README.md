@@ -8,13 +8,14 @@ Tested :  MS WIndows 10 Pro, Windows SDK 10.0.xxxx, Microsoft Visual Studio Comm
 
 ## Usage
 ```
-keypoint_gen.exe times.txt 2DKeypoints(CSV) output
+keypoint_gen.exe times.txt 2DKeypoints(CSV) output -key22
 ```
 
 times.txt contains time info to extract    
 2DKeypoints(CSV) is a directory which contains the input csv files,    
 note that you need separate the each person into each sub directory,    
 output is the output directory    
+-key22 is optional for 22 keypoints, default is 30 keypoints    
 
 ## Reference
 

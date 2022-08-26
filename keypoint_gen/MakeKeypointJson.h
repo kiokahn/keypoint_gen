@@ -41,6 +41,22 @@ public:
 
 };
 
+class MakeKeypointJson30 :public MakeKeypointJson
+{
+public:
+	MakeKeypointJson30(void) {};
+	~MakeKeypointJson30(void) {};
+};
+
+class MakeKeypointJson22 :public MakeKeypointJson
+{
+public:
+	MakeKeypointJson22(void) {};
+	~MakeKeypointJson22(void) {};
+public:
+	void AddPose(const ElementAnnotation* annotation);//for 22 keypoints
+};
+
 //output json sample
 /*
 {
