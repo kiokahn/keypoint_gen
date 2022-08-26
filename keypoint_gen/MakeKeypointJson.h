@@ -31,7 +31,6 @@ protected:
 	Value* m_paryAnnotation;
 	Value* m_paryPose;
 
-	//inline const char* JsonDocToString(const Document& doc, bool isPretty = false) const;
 	void create(void);
 	void distory(void);
 
@@ -39,7 +38,6 @@ public:
 	void AddPose(const ElementAnnotation* annotation);//for 30 keypoints
 	void AddAnnotation(void); 
 	bool FileWrite(FILE* fp, bool isPretty = false);
-	//const char* GetJsonString(bool isPretty = false) const;
 
 };
 
