@@ -248,10 +248,6 @@ void MakeKeypointJson::AddAnnotation(void)
 {
     Document::AllocatorType& allocator = m_pdoc->GetAllocator();
     m_pdoc->AddMember("annotation", *m_paryAnnotation, allocator);
-
-    //m_pdoc->AddMember("annotation00", "00", allocator);
-    //m_pdoc->AddMember("annotation01", "11", allocator);
-
 }
 
 void MakeKeypointJson::AddPose(const ElementAnnotation* annotation)
@@ -273,7 +269,7 @@ void MakeKeypointJson::AddPose(const ElementAnnotation* annotation)
             {
                 Value object(kObjectType);
                 {
-                    int x = annotation->keypoints[i][0];// 0;//여기에 입력
+                    int x = annotation->keypoints[i][0];
                     int y = annotation->keypoints[i][1];
                     object.AddMember("x", x, allocator);
                     object.AddMember("y", y, allocator);
@@ -303,46 +299,3 @@ void MakeKeypointJson::AddPose(const ElementAnnotation* annotation)
     pose_parent.AddMember("pose", pose, allocator);
     m_paryAnnotation->PushBack(pose_parent, allocator);
 }
-
-/*
-void MakeKeypointJson::AddPose()
-{
-
-
-    //write json
-    rapidjson::Document document;
-    document.SetObject();
-    rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-
-    rapidjson::Value array(rapidjson::kArrayType);
-
-    for (int i = 0; i < 10; i++)
-    {
-        rapidjson::Value object(rapidjson::kObjectType);
-        object.AddMember("id", 1, allocator);
-        object.AddMember("name", "test", allocator);
-        object.AddMember("version", 1.01, allocator);
-        object.AddMember("vip", true, allocator);
-
-        object.SetInt(i);
-        array.PushBack(object, allocator);
-    }
-
-    document.AddMember("title", "PLAYER INFO", allocator);
-    document.AddMember("players", array, allocator);
-
-    rapidjson::StringBuffer buffer;
-    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-    document.Accept(writer);
-    auto out = buffer.GetString();
-
-
-    Document::AllocatorType& allocator = m_pdoc->GetAllocator();
-    m_pdoc->AddMember("project", "rapidjson", allocator);
-    m_pdoc->AddMember("stars", 10, allocator);
-
-
-    std::string jsonString = JsonDocToString(*m_pdoc, true);
-    printf(jsonString.c_str());
-}
-*/

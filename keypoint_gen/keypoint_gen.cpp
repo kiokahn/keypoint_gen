@@ -341,6 +341,7 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 			
 
 			//write json format for frame images
+			//added by kiokahn
 			MakeKeypointJson make_json;
 
 			ElementAnnotation ele_annotation;
