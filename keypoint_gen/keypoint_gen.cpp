@@ -408,7 +408,8 @@ bool read_data_and_write22(std::wstring header, std::wstring idir, std::wstring 
 		std::string num_des_s(num_design);
 
 		for (int t_table = 0; t_table < time_table.size(); t_table++) {
-			std::string t_ = std::to_string(t_table + 1);
+			//std::string t_ = std::to_string(t_table + 1);
+			std::string t_ = std::to_string(int(time_table[t_table]));//added by kiokahn
 			std::string odir_8 = graphics::to_utf8(odir);
 			make_directory(odir_8.c_str());
 			std::wstring cam_file_name = odir + L"/";//output csv file name
