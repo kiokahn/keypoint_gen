@@ -29,7 +29,7 @@ using namespace rapidjson;
 
 #define max_cam_cnt 16
 
-user::DistortionFunction* distortion_function[max_cam_cnt];
+//user::DistortionFunction* distortion_function[max_cam_cnt];
 const int width_ = 1920;
 const int height_ = 1080;
 
@@ -133,9 +133,9 @@ bool read_calib_file(std::string file_path)
 			//cam.SetExtrinsicParameters(R, t);
 			//vec2 principal(intrinsic(0, 2), intrinsic(1, 2));
 			//cam.SetIntrinsicParameters(intrinsic(0, 0), principal);
-			distortion_function[cnt] = new user::DistortionFunction;
+			//distortion_function[cnt] = new user::DistortionFunction;
 			
-			distortion_function[cnt]->init(cameraMatrix_, distCoeffs_, width_, height_);
+			//distortion_function[cnt]->init(cameraMatrix_, distCoeffs_, width_, height_);
 			cnt++;
 		}
 	}
@@ -368,9 +368,9 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 					float v1, v2;
 					sscanf(tokens[2 + k * 2 + 0].c_str(), "%f", &v1);
 					sscanf(tokens[2 + k * 2 + 1].c_str(), "%f", &v2);
-					graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2) * double(width_));
+					//graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2) * double(width_));
 
-					ele_annotation.keypoints.push_back(out);
+					ele_annotation.keypoints.push_back(graphics::vec2(v1, v2) * double(width_));
 					//fprintf(fp, ",%0.2f,%0.2f", out[0], out[1]);
 				}
 				//fprintf(fp, "\n");
@@ -388,7 +388,7 @@ bool read_data_and_write(std::wstring header, std::wstring idir, std::wstring od
 	return true;
 }
 
-//for 30 keypoints
+//for 22 keypoints
 bool read_data_and_write22(std::wstring header, std::wstring idir, std::wstring odir, std::vector<std::wstring> persons, std::vector<float> time_table)
 {
 
@@ -494,9 +494,9 @@ bool read_data_and_write22(std::wstring header, std::wstring idir, std::wstring 
 					float v1, v2;
 					sscanf(tokens[2 + k * 2 + 0].c_str(), "%f", &v1);
 					sscanf(tokens[2 + k * 2 + 1].c_str(), "%f", &v2);
-					graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2) * double(width_));
+					//graphics::vec2 out = distortion_function[i]->distort_point_by_map(graphics::vec2(v1, v2) * double(width_));
 
-					ele_annotation.keypoints.push_back(out);
+					ele_annotation.keypoints.push_back(graphics::vec2(v1, v2) * double(width_));
 					//fprintf(fp, ",%0.2f,%0.2f", out[0], out[1]);
 				}
 				//fprintf(fp, "\n");
